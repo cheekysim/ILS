@@ -14,7 +14,13 @@ def date():
         data = f"We are {br-cg} points behind!"
     elif br == cg:
         data = f"We are tied at {cg} points!"
+    elif br == 0 and cg == 0:
+        return jsonify("No Credentials Provided")
     return jsonify(data)
+
+@app.route('creds')
+def creds():
+    return render_templa("creds.html")
 
 @app.route('/')
 def home():

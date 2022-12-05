@@ -3,3 +3,4 @@ data.json
 .python-version
 __pycache__
 .env
+creds.json

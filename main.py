@@ -1,8 +1,6 @@
 import requests
 import json
 import os
-from dotenv import load_dotenv
-load_dotenv()
 
 def getData():
 
@@ -11,9 +9,12 @@ def getData():
 
   url = "https://api.immersivelabs.online/v1/immersive_auth/sessions"
 
+  with open('creds.json', "r") as f:
+    data = json.load(f)
+
   payload = {"account": {
-          "email": f"{os.getenv('email')}",
-          "password": f"{os.getenv('password')}"
+          "email": f"{data.get('email')}",
+          "password": f"{data.get('password')}"
       }}
       
   headers = {
@@ -57,31 +58,35 @@ def getData():
 
   response = session.post("https://api.immersivelabs.online/v1/graphql", headers=headers, data=payload)
   data = response.json()
-  data = data["data"]["leaderboardConnection"]["edges"]
+  try:
+    data = data["data"]["leaderboardConnection"]["edges"]
 
-  final = {"data": []}
+    final = {"data": []}
 
-  cg = 0
-  br = 0
+    cg = 0
+    br = 0
 
-  for event in data:
-    temp = {}
-    node = event.get('node')
-    temp["position"] = event.get('position')
-    temp["name"] = node.get('title')
-    temp["id"] = node.get('id')
-    temp["points"] = node.get('points')
-    if temp.get('id') == "coleg-gwent":
-      cg = temp.get('points')
-    elif temp.get('id') == "bridgend-college":
-      br = temp.get('points')
-    final["data"].append(temp)
+    for event in data:
+      temp = {}
+      node = event.get('node')
+      temp["position"] = event.get('position')
+      temp["name"] = node.get('title')
+      temp["id"] = node.get('id')
+      temp["points"] = node.get('points')
+      if temp.get('id') == "coleg-gwent":
+        cg = temp.get('points')
+      elif temp.get('id') == "bridgend-college":
+        br = temp.get('points')
+      final["data"].append(temp)
 
-  with open('data.json', 'w') as f:
-    json.dump(final, f, indent=4)
+    with open('data.json', 'w') as f:
+      json.dump(final, f, indent=4)
 
-  session.close()
-  return cg, br
+    session.close()
+    return cg, br
+  except:
+    return 0, 0
+
 
 if __name__ == "__main__":
   getData()
