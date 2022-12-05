@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ImmersiveLabs</title>
+</head>
+<style>
+    :root {
+        background-color: hsl(0, 0%, 10%);
+        color: hsl(0, 0%, 80%);
+        font-size: 200%;
+    }
+    .main {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 300%
+    }
+
+    .fullscreenToggle {
+        position: absolute;
+        bottom: 25px;
+        right: 25px;
+        width: 50px;
+        height: 50px;
+        background-color: hsl(0, 0%, 11%);
+        border: none;
+        border-radius: 20px;
+    }
+
+    body {
+        overflow: hidden;
+    }
+</style>
+
+<body>
+    <script>
+        // Run on window load
+        window.onload = function () {
+            sendGetRequest();
+            setInterval(sendGetRequest, 30000);
+
+        }
+        // Send request to server
+        async function sendGetRequest() {
+            await Promise.resolve()
+                .then(() => {
+                    const xhr = new XMLHttpRequest();
+                    xhr.open('GET', '/data');
+                    xhr.send();
+
+                    xhr.onreadystatechange = () => {
+                        if (xhr.readyState === XMLHttpRequest.DONE) {
+                            if (xhr.status === 200) {
+                                document.getElementById('data').innerHTML = JSON.parse(xhr.responseText);
+                            } else {
+                                console.log(xhr.status)
+                            }
+                        }
+                    };
+                })
+                .catch(error => {
+                    console.log(error)
+                });
+        }
+    </script>
+    <script>
+        function toggleFullScreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                }
+            }
+        }
+    </script>
+    <div class="main" id="data">LOADING</div>
+    <button class="fullscreenToggle" , id="fullscreenToggle" , onclick="toggleFullScreen()"></button>
+</body>
+
+</html>
