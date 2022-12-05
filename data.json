@@ -10,7 +10,7 @@
             "position": 38,
             "name": "University of Liverpool",
             "id": "university-of-liverpool",
-            "points": 340550
+            "points": 340560
         },
         {
             "position": 39,
@@ -50,15 +50,15 @@
         },
         {
             "position": 45,
-            "name": "University of Chester",
-            "id": "university-of-chester",
-            "points": 305375
+            "name": "Metropolitan State College of Denver",
+            "id": "metropolitan-state-college-of-denver",
+            "points": 305530
         },
         {
             "position": 46,
-            "name": "Metropolitan State College of Denver",
-            "id": "metropolitan-state-college-of-denver",
-            "points": 304580
+            "name": "University of Chester",
+            "id": "university-of-chester",
+            "points": 305375
         },
         {
             "position": 47,

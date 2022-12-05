@@ -1,5 +1,8 @@
 import requests
 import json
+import os
+from dotenv import load_dotenv
+load_dotenv()
 
 def getData():
 
@@ -9,8 +12,8 @@ def getData():
   url = "https://api.immersivelabs.online/v1/immersive_auth/sessions"
 
   payload = {"account": {
-          "email": "10251824@coleggwent.ac.uk",
-          "password": "Bel23082005S"
+          "email": f"{os.getenv('email')}",
+          "password": f"{os.getenv('password')}"
       }}
       
   headers = {
@@ -80,4 +83,5 @@ def getData():
   session.close()
   return cg, br
 
-getData()
+if __name__ == "__main__":
+  getData()
