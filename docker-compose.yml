@@ -6,8 +6,6 @@ services:
     build: .
     stdin_open: true
     tty: true
-    volumes:
-      - ${DIRECTORY}/code/ILS:/root/app
     ports:
       - 3000:3000
     labels:
