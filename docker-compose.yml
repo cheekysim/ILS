@@ -4,8 +4,6 @@ services:
     container_name: ils-app
     pull_policy: build
     build: .
-    stdin_open: true
-    tty: true
     ports:
       - 3000:3000
     labels:
