@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ImmersiveLabs</title>
+</head>
+<style>
+    :root {
+        background-color: hsl(0, 0%, 10%);
+        color: hsl(0, 0%, 80%);
+        font-size: 62.5%;
+    }
+
+    .main {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    form {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: column;
+        padding: 1rem;
+        background-color: hsl(0, 0%, 15%);
+        box-shadow: 0 0 1 0 hsla(0, 0%, 0%, 0.9);
+        border-radius: 1rem;
+        width: 25%;
+        aspect-ratio: 3/4;
+        height: auto;
+        transition: all 0.5s ease;
+    }
+
+    form:hover {
+        background-color: hsl(0, 0%, 17%);
+        box-shadow: 0 0 2.5rem 0 hsla(0, 0%, 0%, 0.9);
+        transform: scale(1.1);
+    }
+
+    input {
+        background-color: hsl(0, 0%, 25%);
+        border: none;
+        text-decoration: none;
+        width: 70%;
+        height: 20%;
+        border-radius: 1rem;
+        color: hsl(0, 0%, 80%);
+        text-align: center;
+        transition: all 0.5s ease;
+        box-shadow: 0 0 1.0rem 0 hsla(0, 0%, 0%, 0.9);
+    }
+
+    input:hover {
+        background-color: hsl(0, 0%, 27%);
+        box-shadow: 0 0 1.5rem 0 hsla(0, 0%, 0%, 0.9);
+        transform: scale(1.1);
+    }
+
+    input:focus {
+        border: none;
+        outline: none;
+    }
+
+    input:-webkit-autofill {
+        background-color: hsl(0, 0%, 25%);
+    }
+    
+    .inputs {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        height: 50%;
+        width: 100%;
+        margin: 10% 0;
+    }
+
+    .title {
+        margin-top: 10%;
+        padding: 5%;
+        background-color: hsl(0, 0%, 25%);
+        border-radius: 1rem;
+        box-shadow: 0 0 1.5rem 0 hsla(0, 0%, 0%, 0.9);
+        font-size: 3rem;
+        transition: all 0.5s ease;
+        width: 60%;
+        text-align: center;
+    }
+    
+    .title:hover {
+        background-color: hsl(0, 0%, 27%);
+        box-shadow: 0 0 2.5rem 0 hsla(0, 0%, 0%, 0.9);
+        transform: scale(1.1);
+    }
+
+    .submit {
+        background-color: hsl(0, 0%, 25%);
+        border: none;
+        text-decoration: none;
+        width: 70%;
+        height: 10%;
+        color: hsl(0, 0%, 80%);
+        margin-bottom: 15%;
+        font-size: 2.5rem;
+    }
+
+    body {
+        overflow: hidden;
+    }
+</style>
+
+<body>
+    <div class="main">
+        <form action="/creds" method="POST">
+            <div class="title">Credentials</div>
+            <div class="inputs">
+                <input type="text" id="email" name="email" placeholder="EMAIL">
+                <input type="text" id="password" name="password" placeholder="PASSWORD">
+            </div>
+            <input class="submit" type="submit" value="Submit">
+        </form>
+    </div>
+</body>
+
+</html>
