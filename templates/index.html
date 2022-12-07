@@ -24,7 +24,6 @@
                     const xhr = new XMLHttpRequest();
                     xhr.open('GET', '/data');
                     xhr.send();
-
                     xhr.onreadystatechange = () => {
                         if (xhr.readyState === XMLHttpRequest.DONE) {
                             if (xhr.status === 200) {
