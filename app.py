@@ -10,10 +10,7 @@ app = Flask(__name__)
 def date():
     cg, br = getData()
     data = {"cg": cg, "br": br}
-    if cg.get('points') == 0 and br.get('points') == 0:
-        return redirect('/creds')
-    else:
-        return jsonify(data)
+    return jsonify(data)
 
 @app.route('/creds', methods=['GET', 'POST'])
 def creds():

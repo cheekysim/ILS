@@ -42,6 +42,7 @@
                                     document.getElementById('brdistance').innerHTML = `${br.points - cg.points} Points Ahead`;
                                 } else if (br.points === 0 && cg.points === 0) {
                                     console.log('No Credentials Provided!')
+                                    window.location.replace('/creds')
                                 } else {
                                     document.getElementById('cgdistance').innerHTML = `Tied!`;
                                     document.getElementById('brdistance').innerHTML = `Tied!`;
