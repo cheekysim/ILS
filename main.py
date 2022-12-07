@@ -72,12 +72,12 @@ def getData():
     if node.get('id') == "coleg-gwent":
       cg = {
         "points": node.get('points'),
-        "position": node.get('position')
+        "position": event.get('position')
         }
     elif node.get('id') == "bridgend-college":
       br = {
         "points": node.get('points'),
-        "position": node.get('position')
+        "position": event.get('position')
         }
 
   session.close()
