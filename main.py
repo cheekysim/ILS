@@ -68,26 +68,17 @@ def getData():
   br = 0
 
   for event in data:
-    temp = {}
     node = event.get('node')
-    temp["id"] = node.get('id')
-    temp["name"] = node.get('title')
-    temp["points"] = node.get('points')
-    temp["position"] = event.get('position')
-    if temp.get('id') == "coleg-gwent":
+    if node.get('id') == "coleg-gwent":
       cg = {
-        "points": temp.get('points'),
-        "position": temp.get('position')
+        "points": node.get('points'),
+        "position": node.get('position')
         }
-    elif temp.get('id') == "bridgend-college":
+    elif node.get('id') == "bridgend-college":
       br = {
-        "points": temp.get('points'),
-        "position": temp.get('position')
+        "points": node.get('points'),
+        "position": node.get('position')
         }
-    final["data"].append(temp)
-
-  with open('data.json', 'w') as f:
-    json.dump(final, f, indent=4)
 
   session.close()
   return cg, br
