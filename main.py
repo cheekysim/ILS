@@ -68,14 +68,20 @@ def getData():
     for event in data:
       temp = {}
       node = event.get('node')
-      temp["position"] = event.get('position')
-      temp["name"] = node.get('title')
       temp["id"] = node.get('id')
+      temp["name"] = node.get('title')
       temp["points"] = node.get('points')
+      temp["position"] = event.get('position')
       if temp.get('id') == "coleg-gwent":
-        cg = temp.get('points')
+        cg = {
+          "points": temp.get('points'),
+          "position": temp.get('position')
+          }
       elif temp.get('id') == "bridgend-college":
-        br = temp.get('points')
+        br = {
+          "points": temp.get('points'),
+          "position": temp.get('position')
+          }
       final["data"].append(temp)
 
     with open('data.json', 'w') as f:
@@ -83,8 +89,9 @@ def getData():
 
     session.close()
     return cg, br
-  except:
-    return 0, 0
+  except Exception as e:
+    print(e)
+    return {"points": 0, "position": 0}, {"points": 0, "position": 0}
 
 
 if __name__ == "__main__":

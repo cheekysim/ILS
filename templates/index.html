@@ -5,45 +5,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/static/css/style.css">
     <title>ImmersiveLabs</title>
 </head>
-<style>
-    :root {
-        background-color: hsl(0, 0%, 10%);
-        color: hsl(0, 0%, 80%);
-        font-size: 62.5%;
-    }
-    .main {
-        width: 100vw;
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        font-size: 10rem;
-    }
-
-    .fullscreenToggle {
-        position: absolute;
-        bottom: 2.5rem;
-        right: 2.5rem;
-        width: 5rem;
-        height: 5rem;
-        background-color: hsla(0, 0%, 11%, 0.2);
-        border: none;
-        border-radius: 2rem;
-    }
-
-    body {
-        overflow: hidden;
-    }
-</style>
 
 <body>
     <script>
         // Run on window load
         window.onload = function () {
-            sendGetRequest();
-            setInterval(sendGetRequest, 30000);
+            //sendGetRequest();
+            //setInterval(sendGetRequest, 30000);
 
         }
         // Send request to server
@@ -57,7 +28,25 @@
                     xhr.onreadystatechange = () => {
                         if (xhr.readyState === XMLHttpRequest.DONE) {
                             if (xhr.status === 200) {
-                                document.getElementById('data').innerHTML = JSON.parse(xhr.responseText);
+                                cg = JSON.parse(xhr.responseText).cg;
+                                br = JSON.parse(xhr.responseText).br;
+                                console.log(cg, br)
+                                document.getElementById('cgpoints').innerHTML = `Points: ${cg.points}`;
+                                document.getElementById('brpoints').innerHTML = `Points: ${br.points}`;
+                                document.getElementById('cgposition').innerHTML = `Position: ${cg.position}`;
+                                document.getElementById('brposition').innerHTML = `Position: ${br.position}`;
+                                if (cg.points > br.points) {
+                                    document.getElementById('cgdistance').innerHTML = `${cg.points - br.points} Points Ahead`;
+                                    document.getElementById('brdistance').innerHTML = `${cg.points - br.points} Points Behind`;
+                                } else if (br.points > cg.points) {
+                                    document.getElementById('cgdistance').innerHTML = `${br.points - cg.points} Points Behind`;
+                                    document.getElementById('brdistance').innerHTML = `${br.points - cg.points} Points Ahead`;
+                                } else if (br.points === 0 && cg.points === 0) {
+                                    console.log('No Credentials Provided!')
+                                } else {
+                                    document.getElementById('cgdistance').innerHTML = `Tied!`;
+                                    document.getElementById('brdistance').innerHTML = `Tied!`;
+                                }
                             } else {
                                 console.log(xhr.status)
                             }
@@ -80,7 +69,30 @@
             }
         }
     </script>
-    <div class="main" id="data">LOADING</div>
+    <div class="wrapper">
+        <div class="card">
+            <div class="title">
+                <img src="/static/images/cg.png" alt="Coleg Gwent Logo">
+                <div class="name">Coleg Gwent</div>
+            </div>
+            <div class="content">
+                <div id="cgpoints" class="points">Points: 19000</div>
+                <div id="cgposition" class="position">Position: 40</div>
+                <div id="cgdistance" class="distance">3000 Points Ahead</div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="title">
+                <img src="/static/images/br.png" alt="Bridgend Logo">
+                <div class="name">Bridgend</div>
+            </div>
+            <div class="content">
+                <div id="brpoints" class="points">Points: 16000</div>
+                <div id="brposition" class="position">Position: 45</div>
+                <div id="brdistance" class="distance">3000 Points Behind</div>
+            </div>
+        </div>
+    </div>
     <button class="fullscreenToggle" , id="fullscreenToggle" , onclick="toggleFullScreen()"></button>
 </body>
 

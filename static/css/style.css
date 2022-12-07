@@ -1,0 +1,125 @@
+:root {
+    background-color: hsl(0, 0%, 10%);
+    color: hsl(0, 0%, 80%);
+    font-size: 62.5%;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.wrapper {
+    margin-top: 5vh;
+    width: 90vw;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 10rem;
+}
+
+.card {
+    margin: 0 4rem;
+    width: 90%;
+    height: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+    background-color: hsl(0, 0%, 20%);
+    border-radius: 2rem;
+    box-shadow: 0 0 1rem hsla(0, 0%, 0%, 0.5);
+    overflow: hidden;
+    font-size: 5rem;
+}
+
+.title, .content{
+    margin: 2rem;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    background-color: hsl(0, 0%, 30%);
+    border-radius: 2rem;
+    transition: all 0.5s ease;
+}   
+
+img {
+    border-radius: 2rem;
+}
+
+.points, .position, .distance {
+    margin: 2rem;
+}
+
+.title:hover, .content:hover {
+    transform: scale(1.1)
+}
+
+.fullscreenToggle {
+    position: absolute;
+    bottom: 2.5rem;
+    right: 2.5rem;
+    width: 5rem;
+    height: 5rem;
+    background-color: hsla(0, 0%, 11%, 0.2);
+    border: none;
+    border-radius: 2rem;
+}
+
+body {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@media only screen and (max-width: 1300px) {
+    .title:hover, .content:hover {
+        transform: scale(1.05)
+    }
+}
+
+@media only screen and (max-width: 1060px) {
+    .points, .position, .distance {
+        font-size: 3rem;
+    }
+}
+
+@media only screen and (max-height: 800px) {
+    .points, .position, .distance {
+        font-size: 3rem;
+    }
+}
+
+@media only screen and (max-width: 945px) {
+    .wrapper {
+        flex-direction: column;
+    }
+    .card {
+        flex-direction: row;
+        margin: 2rem 0;
+    }
+    img {
+        width: auto;
+        height: 60%;
+        aspect-ratio: 1;
+    }
+    .content, .title {
+        width: 49%;
+        height: 80%;
+    }
+    .points, .position, .distance {
+        font-size: 2rem;
+        margin: 1.5rem;
+    }
+}
+
+@media only screen and (max-width: 852px) {
+    .name {
+        font-size: 4rem;
+    }
+}

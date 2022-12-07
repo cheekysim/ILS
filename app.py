@@ -9,14 +9,7 @@ app = Flask(__name__)
 @app.route('/data', methods=['GET'])
 def date():
     cg, br = getData()
-    if cg > br:
-        data = f"We are {cg-br} points ahead!"
-    elif br > cg:
-        data = f"We are {br-cg} points behind!"
-    elif br == 0 and cg == 0:
-        return jsonify("No Credentials Provided")
-    elif br == cg:
-        data = f"We are tied at {cg} points!"
+    data = {"cg": cg, "br": br}
     return jsonify(data)
 
 @app.route('/creds', methods=['GET', 'POST'])
