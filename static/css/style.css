@@ -91,7 +91,7 @@ body {
 
 @media only screen and (max-height: 800px) {
     .points, .position, .distance {
-        font-size: 3rem;
+        font-size: 2rem;
     }
 }
 
