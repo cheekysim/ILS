@@ -30,7 +30,6 @@
                             if (xhr.status === 200) {
                                 cg = JSON.parse(xhr.responseText).cg;
                                 br = JSON.parse(xhr.responseText).br;
-                                console.log(cg, br)
                                 document.getElementById('cgpoints').innerHTML = `Points: ${cg.points}`;
                                 document.getElementById('brpoints').innerHTML = `Points: ${br.points}`;
                                 document.getElementById('cgposition').innerHTML = `Position: ${cg.position}`;
