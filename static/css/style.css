@@ -1,6 +1,15 @@
+@font-face {
+    font-family: "Monocraft";
+    src: url('/static/fonts/Monocraft.otf') format('opentype');
+}
+
+/* Font provided by IdreesInc 
+https://github.com/IdreesInc/Monocraft */
+
 :root {
     background-color: hsl(0, 0%, 10%);
     color: hsl(0, 0%, 80%);
+    font-family: 'Monocraft';
     font-size: 62.5%;
 }
 
