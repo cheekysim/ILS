@@ -25,7 +25,6 @@ https://github.com/IdreesInc/Monocraft */
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 10rem;
 }
 
 .card {
@@ -40,7 +39,7 @@ https://github.com/IdreesInc/Monocraft */
     border-radius: 2rem;
     box-shadow: 0 0 1rem 0 hsla(0, 0%, 0%, 0.5);
     overflow: hidden;
-    font-size: 5rem;
+    font-size: 4rem;
 }
 
 .title, .content{
