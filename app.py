@@ -8,19 +8,19 @@ import json
 app = Flask(__name__)
 auth = HTTPBasicAuth()
 
-try:
-    with open('auth.json', 'r') as f:
-        login = json.load(f)
-except FileNotFoundError:
-    with open('auth.json', 'w') as f:
-        login = {"user": "pass"}
-        json.dump(login, f, indent=4)
-
-
-users = {username: generate_password_hash(password) for username, password in login.items()}
 
 @auth.verify_password
 def veify_password(username, password):
+    global login
+    try:
+        with open('auth.json', 'r') as f:
+            login = json.load(f)
+    except FileNotFoundError:
+        with open('auth.json', 'w') as f:
+            login = {"user": "pass"}
+            json.dump(login, f, indent=4)
+
+    users = {username: generate_password_hash(password) for username, password in login.items()}
     if username in users and check_password_hash(users.get(username), password):
         return username
 
