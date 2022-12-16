@@ -8,11 +8,16 @@ import json
 app = Flask(__name__)
 auth = HTTPBasicAuth()
 
-with open('auth.json', "r") as f:
-    logins = json.load(f)
-    print(logins)
+try:
+    with open('auth.json', 'r') as f:
+        login = json.load(f)
+except FileNotFoundError:
+    with open('auth.json', 'w') as f:
+        login = {"user": "pass"}
+        json.dump(login, f, indent=4)
 
-users = {username: generate_password_hash(password) for username, password in logins.items()}
+
+users = {username: generate_password_hash(password) for username, password in login.items()}
 
 @auth.verify_password
 def veify_password(username, password):
@@ -30,9 +35,16 @@ def date():
 @auth.login_required
 def creds():
     if request.method == 'POST':
-        with open('creds.json', 'w') as f:
-            json.dump(request.form, f, indent=4)
-        return redirect('/')
+        global login
+        if login == {"user": "pass"}:
+            with open('auth.json', 'w') as f:
+                json.dump({request.form.get('email'): request.form.get('password')}, f, indent=4)
+            login = {request.form.get('email'): request.form.get('password')}
+            return redirect('/creds')
+        else:
+            with open('creds.json', 'w') as f:
+                json.dump(request.form, f, indent=4)
+            return redirect('/')
     elif request.method == 'GET':
         return render_template("creds.html")
     else:
