@@ -5,7 +5,6 @@ import os
 def getData():
   session = requests.Session()
 
-
   try:
     url = "https://api.immersivelabs.online/v1/immersive_auth/sessions"
 
@@ -37,7 +36,7 @@ def getData():
   except Exception as e:
     print(e)
     return {"points": 0, "position": 0}, {"points": 0, "position": 0}
-
+  
   payload = "{\"operationName\":\"GetLeaderboardTableData\",\"variables\":{\"profileId\":null,\"landOnParticipantPage\":true,\"after\":null,\"before\":null,\"first\":12,\"last\":null,\"leaderboardContext\":{\"type\":\"GLOBAL\",\"id\":null},\"participantType\":\"ORGANISATION\"},\"query\":\"query GetLeaderboardTableData($profileId: ID = null, $leaderboardContext: LeaderboardContextInput, $participantType: LeaderboardParticipant, $landOnParticipantPage: Boolean = true, $limit: Int, $after: String = null, $before: String = null, $first: Int = null, $last: Int = null) {\\n  ...GetLeaderboardData\\n}\\n\\nfragment GetLeaderboardData on Query {\\n  leaderboardConnection(profileId: $profileId, leaderboardContext: $leaderboardContext, participantType: $participantType, landOnParticipantPage: $landOnParticipantPage, limit: $limit, after: $after, before: $before, first: $first, last: $last) {\\n    currentPage\\n    totalCount\\n    pageInfo {\\n      startCursor\\n      endCursor\\n      __typename\\n    }\\n    edges {\\n      cursor\\n      position\\n      node {\\n        id\\n        title\\n        points\\n        profileAvatar {\\n          id\\n          versionUrl\\n          __typename\\n        }\\n        __typename\\n      }\\n      __typename\\n    }\\n    __typename\\n  }\\n  __typename\\n}\\n\"}"
   
   headers = {
