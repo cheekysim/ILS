@@ -44,7 +44,8 @@ https://github.com/IdreesInc/Monocraft */
 
 .title, .content{
     margin: 2rem;
-    padding: 2rem;
+    width: 85%;
+    height: 40%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -54,9 +55,20 @@ https://github.com/IdreesInc/Monocraft */
     border-radius: 2rem;
     transition: all 0.5s ease;
     box-shadow: 0 0 1rem 0 hsla(0, 0%, 0%, 0.5);
-}   
+}
+
+.title {
+    margin-top: 5rem;
+    height: 60%;
+}
+
+.content {
+    margin-bottom: 4rem;
+}
 
 img {
+    min-height: 20%;
+    aspect-ratio: 1;
     border-radius: 2rem;
 }
 
@@ -85,6 +97,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.content > img {
+    display: none;
 }
 
 @media only screen and (max-width: 1300px) {
@@ -121,17 +137,47 @@ body {
     .content, .title {
         width: 49%;
         height: 80%;
+        margin: 2rem;
     }
     .points, .position, .distance {
         font-size: 2rem;
         margin: 1.5rem;
     }
-}
-
-@media only screen and (max-width: 852px) {
     .name {
-        font-size: 4rem;
+        font-size: 2rem;
     }
 }
 
+@media only screen and (max-width: 600px) {
+    .title {
+        display: none;
+    }
+    .content {
+        height: 80%;
+        width: auto;
+        aspect-ratio: 1;
+        position: relative
+    }
+    .points, .position, .distance {
+        font-size: 2.5rem;
+        z-index:1;
+        color:white;;
+    }
+    .content > img {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        filter: brightness(0.4);
+    }
+    
+}
+@media only screen and (max-width: 410px) {
+    .content {
+        width: 80%;
+        height: auto;
+    }
+}
 /* Change the cards to show horizontally on mobile devices ( 645px )*/
